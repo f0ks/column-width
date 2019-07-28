@@ -26,7 +26,7 @@
     "_execute_page_action": {
       "description": "Copy the link to the active pipeline",
       "suggested_key": {
-        "default": "Ctrl+I",
+        "default": "Ctrl+B",
         "mac": "MacCtrl+I"
       }
     }

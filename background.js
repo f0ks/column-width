@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener(function () {
+/*chrome.runtime.onInstalled.addListener(function () {
     chrome.storage.sync.set({color: 'red'}, function () {
         console.log('The color is green.');
     });
@@ -11,15 +11,21 @@ chrome.runtime.onInstalled.addListener(function () {
             actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
     });
+});*/
+
+chrome.commands.onCommand.addListener(function (command) {
+    alert('command');
+
+});
+chrome.commands.onCommand.addListener( function(command) {
+    alert('command1');
+
 });
 
-document.onkeydown = keydown;
+chrome.commands.onCommand.addListener(function (command) {
+    alert(333);
+});
 
-function keydown(evt) {
-    if (!evt) evt = event;
-    if (evt.ctrlKey && evt.altKey && evt.keyCode === 115) { //CTRL+ALT+F4
-        alert("CTRL+ALT+F4");
-    } else if (evt.shiftKey && evt.keyCode === 9) { //Shif+TAB
-        alert("Shift+TAB");
-    }
-}
+alert(1);
+
+
