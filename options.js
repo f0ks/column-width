@@ -19,3 +19,5 @@ function constructOptions(kButtonColors) {
   }
 }
 constructOptions(kButtonColors);
+
+console.log('options');
