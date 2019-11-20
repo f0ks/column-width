@@ -24,17 +24,17 @@
     }
   },
   "commands": {
-    "reduce-width": {
+    "godown": {
       "suggested_key": {
         "default": "Ctrl+Shift+Left"
       },
-      "description": "reduce width"
+      "description": "reduce column width"
     },
-    "increase-width": {
+    "godown222": {
       "suggested_key": {
         "default": "Ctrl+Shift+Right"
       },
-      "description": "increase width"
+      "description": "increase column width"
     }
   },
   "icons": {
