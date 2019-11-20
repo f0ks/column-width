@@ -18,12 +18,14 @@ chrome.storage.sync.get('color', function(data) {
 });
 
 changeColor.onclick = function(element) {
-  console.log('on click');
+
+  chrome.extension.getBackgroundPage().console.log('on click');
+
   let color = element.target.value;
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.executeScript(
         tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
+        {code: 'document.body.style.width = "400px"'});
   });
 };
 
