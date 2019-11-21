@@ -9,23 +9,23 @@ chrome.extension.getBackgroundPage().console.log('popup');
 
 let changeColor = document.getElementById('changeColor');
 
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
-  chrome.extension.getBackgroundPage().console.log('get color');
+chrome.storage.sync.get('color', function (data) {
+    changeColor.style.backgroundColor = data.color;
+    changeColor.setAttribute('value', data.color);
+    chrome.extension.getBackgroundPage().console.log('get color');
 
 
 });
 
-changeColor.onclick = function(element) {
+changeColor.onclick = function (element) {
 
-  chrome.extension.getBackgroundPage().console.log('on click');
+    chrome.extension.getBackgroundPage().console.log('on click');
 
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.width = "400px"'});
-  });
+    let color = element.target.value;
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+        chrome.tabs.executeScript(
+            tabs[0].id,
+            {code: 'document.body.style.backgroundColor = "' + color + '";'});
+    });
 };
 
