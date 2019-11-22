@@ -16,24 +16,24 @@ chrome.runtime.onInstalled.addListener(function () {
         console.log('The color is green.');
     });
 
-    /*  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
         chrome.declarativeContent.onPageChanged.addRules([{
-          conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {hostEquals: 'developer.chrome.com'},
-          })],
-          actions: [new chrome.declarativeContent.ShowPageAction()]
+            conditions: [new chrome.declarativeContent.PageStateMatcher({
+                pageUrl: {hostEquals: 'developer.chrome.com'},
+            })],
+            actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
-      });*/
+    });
 
 
 });
 
 window.addEventListener('load', (e) => {
-    chrome.extension.getBackgroundPage().console.log('load', e);
+    console.log('load', e);
 });
 
 window.addEventListener('wheel', event => {
-    chrome.extension.getBackgroundPage().console.log('wheel', e);
+    console.log('wheel', e);
 });
 
 //debugger;
@@ -83,7 +83,7 @@ window.addEventListener('wheel', event => {
 });*/
 
 chrome.commands.onCommand.addListener(function (command) {
-    chrome.extension.getBackgroundPage().console.log('Command:', command);
+    console.log('Command:', command);
 
     if (curBodyWidth === null) {
         curBodyWidth = 100;
@@ -98,31 +98,39 @@ chrome.commands.onCommand.addListener(function (command) {
         }
     }
 
-    //setBodyWidth(curBodyWidth);
+    setBodyWidth(curBodyWidth);
 
 });
 
-function _getCurrentTab(callback){ //Take a callback
-    var theTab;
-    chrome.tabs.query({active:true, currentWindow:true},function(tab){
+function _getCurrentTab(callback) { //Take a callback
+    chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
         callback(tab); //call the callback with argument
     });
 }
 
-function _displayTab(tab)
-{ //define your callback function
-    chrome.extension.getBackgroundPage().console.log(tab);
+function _displayTab(tab) { //define your callback function
+    console.log(tab);
+
+    chrome.tabs.executeScript(
+        tab.id,
+        {code: `document.body.style.width = ${curBodyWidth}%`}
+    );
+
 }
 
 _getCurrentTab(_displayTab); //invoke the function with the callback function reference
 
 
 function setBodyWidth(value) {
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+/*
+chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
         chrome.tabs.executeScript(
-            tabs[0].id,
-            {code: `document.body.style.width = ${value}%`});
+            tab.id,
+            {code: `document.body.style.width = ${value}%`}
+            );
     });
+
+    */
     _getCurrentTab(_displayTab)
 }
 
