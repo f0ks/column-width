@@ -4,15 +4,12 @@
 
 'use strict';
 
-let body, curBodyWidth = null;
-
-
-chrome.extension.getBackgroundPage().console.log('background');
+let curBodyWidth = null;
 
 
 chrome.runtime.onInstalled.addListener(function () {
 
-    chrome.storage.sync.set({color: '#3aa757'}, function () {
+/*    chrome.storage.sync.set({color: '#3aa757'}, function () {
         console.log('The color is green.');
     });
 
@@ -23,55 +20,11 @@ chrome.runtime.onInstalled.addListener(function () {
             })],
             actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
-    });
+    });*/
 
 
 });
 
-window.addEventListener('load', (e) => {
-    console.log('load', e);
-});
-
-window.addEventListener('wheel', event => {
-    console.log('wheel', e);
-});
-
-//debugger;
-
-//////////////////////////////
-/*
-let body,
-    curBodyWidth = null;
-
-window.addEventListener('load', () => {
-  body = document.querySelector('body');
-});
-
-window.addEventListener('wheel', event => {
-  if (!event.shiftKey) return;
-
-  const delta = Math.sign(event.wheelDelta);
-  body.style.margin = '0 auto';
-
-  if (curBodyWidth === null) {
-    curBodyWidth = 100;
-  }
-
-  if (delta === 1) {
-    if (curBodyWidth < 100) {
-      curBodyWidth += 5;
-    }
-    body.style.width = curBodyWidth + '%';
-  }
-
-  if (delta === -1) {
-    if (curBodyWidth > 0) {
-      curBodyWidth -= 5;
-    }
-    body.style.width = curBodyWidth + '%';
-  }
-
-});*/
 
 
 //////////////////////////////
@@ -82,6 +35,14 @@ window.addEventListener('wheel', event => {
         {code: `body.style.margin = '0 auto'`});
 });*/
 
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    //code in here will run every time a user goes onto a new tab, so you can insert your scripts into every new tab
+    console.log('background onUpdate');
+});
+
+
+
 chrome.commands.onCommand.addListener(function (command) {
     console.log('Command:', command);
 
@@ -90,15 +51,25 @@ chrome.commands.onCommand.addListener(function (command) {
     }
     if (command === 'godown') {
         if (curBodyWidth < 100) {
-            curBodyWidth += 50;
+            curBodyWidth += 5;
         }
     } else if (command === 'godown222') {
         if (curBodyWidth > 0) {
-            curBodyWidth -= 50;
+            curBodyWidth -= 5;
         }
     }
 
-    setBodyWidth(curBodyWidth);
+    //setBodyWidth(curBodyWidth);
+
+    // Send a message to the active tab
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        console.log('query');
+        const activeTab = tabs[0];
+        console.log('active tab id', activeTab.id);
+        chrome.tabs.sendMessage(activeTab.id, {"width": curBodyWidth}, function(response) {
+            console.log(response);
+        });
+    });
 
 });
 
@@ -118,7 +89,7 @@ function _displayTab(tab) { //define your callback function
 
 }
 
-_getCurrentTab(_displayTab); //invoke the function with the callback function reference
+//_getCurrentTab(_displayTab); //invoke the function with the callback function reference
 
 
 function setBodyWidth(value) {

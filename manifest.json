@@ -4,20 +4,23 @@
   "description": "Build an Extension!",
   "permissions": [
     "activeTab",
+    "tabs",
     "declarativeContent",
-    "storage"
+    "storage",
+    "http://*/*"
   ],
   "options_page": "options.html",
   "background": {
     "scripts": [
       "background.js"
     ],
-    "persistent": false
+    "persistent": true
   },
   "content_scripts": [
     {
       "matches": [
         "https://yandex.ru/*"
+      , "https://*/*"
       ],
       "js": [
         "contentScript.js"
@@ -36,13 +39,13 @@
   "commands": {
     "godown": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Left"
+        "default": "Ctrl+Shift+Y"
       },
       "description": "reduce column width"
     },
     "godown222": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Right"
+        "default": "Ctrl+Shift+U"
       },
       "description": "increase column width"
     }

@@ -3,6 +3,13 @@ to view extension's console select Inspect views
 
                                    in chrome://extensions/
 
+What works:
+-width adjustment of any tab with keyboard shortcuts
+
+PROBLEMS:
+-background page .html error
+-commands works only with names 'godown' and 'godown222' (weird)
+
 TODO:
 1. add keyboard shortcuts for page width adjustments
 2. add mousewheel shortcuts
