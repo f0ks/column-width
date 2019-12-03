@@ -11,6 +11,8 @@ PROBLEMS:
 -commands works only with names 'godown' and 'godown222' (weird)
 
 TODO:
+0. store separate width value for each page instance
+
 1. add keyboard shortcuts for page width adjustments
 2. add mousewheel shortcuts
 3. add options

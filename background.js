@@ -1,9 +1,6 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 'use strict';
 
+let tabs = [];
 let curBodyWidth = null;
 
 
@@ -61,10 +58,16 @@ chrome.commands.onCommand.addListener(function (command) {
 
     //setBodyWidth(curBodyWidth);
 
-    // Send a message to the active tab
+    // get active tab
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        console.log('query');
         const activeTab = tabs[0];
+
+        if (tabs.find((el) => el.id === activeTab.id)) {
+
+        } else {
+            tabs.push({id: id, width: 100})
+        }
+
         console.log('active tab id', activeTab.id);
         chrome.tabs.sendMessage(activeTab.id, {"width": curBodyWidth}, function(response) {
             console.log(response);
