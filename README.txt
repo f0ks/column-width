@@ -9,6 +9,7 @@ What works:
 PROBLEMS:
 -background page .html error
 -commands works only with names 'godown' and 'godown222' (weird)
+-workaround body no margin
 
 TODO:
 0. store separate width value for each page instance

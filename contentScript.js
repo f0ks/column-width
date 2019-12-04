@@ -1,12 +1,9 @@
 'use strict';
 
 console.log('content scr');
-//alert('content');
 
-//console.log(document.querySelector('body'));
-
-// content.js
-
+//document.body.style.marginLeft = 'auto';
+//document.body.style.marginRight = 'auto';
 document.body.style.margin = '0 auto';
 
 console.log('add listener ahead');
