@@ -13,8 +13,9 @@ PROBLEMS:
 TODO:
 0. store separate width value for each page instance
 
-1. add keyboard shortcuts for page width adjustments
-2. add mousewheel shortcuts
-3. add options
-4. test on linux and mac.
-5. publish.
+- add keyboard shortcuts for page width adjustments
+- add mousewheel shortcuts
+- add buttons in interface for mouse only users
+- add options
+- test on linux and mac.
+- publish.
