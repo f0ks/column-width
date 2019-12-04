@@ -19,3 +19,5 @@ TODO:
 - add options
 - test on linux and mac.
 - publish.
+
+- additional thing: submit for code review

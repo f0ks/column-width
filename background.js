@@ -1,27 +1,26 @@
 'use strict';
 
-let tabs = [];
+let columnWidthTabs = [];
 let curBodyWidth = null;
 
 
 chrome.runtime.onInstalled.addListener(function () {
 
-/*    chrome.storage.sync.set({color: '#3aa757'}, function () {
-        console.log('The color is green.');
-    });
+    /*    chrome.storage.sync.set({color: '#3aa757'}, function () {
+            console.log('The color is green.');
+        });
 
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-        chrome.declarativeContent.onPageChanged.addRules([{
-            conditions: [new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: {hostEquals: 'developer.chrome.com'},
-            })],
-            actions: [new chrome.declarativeContent.ShowPageAction()]
-        }]);
-    });*/
+        chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+            chrome.declarativeContent.onPageChanged.addRules([{
+                conditions: [new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {hostEquals: 'developer.chrome.com'},
+                })],
+                actions: [new chrome.declarativeContent.ShowPageAction()]
+            }]);
+        });*/
 
 
 });
-
 
 
 //////////////////////////////
@@ -33,43 +32,38 @@ chrome.runtime.onInstalled.addListener(function () {
 });*/
 
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     //code in here will run every time a user goes onto a new tab, so you can insert your scripts into every new tab
     console.log('background onUpdate');
 });
 
 
-
 chrome.commands.onCommand.addListener(function (command) {
     console.log('Command:', command);
-
-    if (curBodyWidth === null) {
-        curBodyWidth = 100;
-    }
-    if (command === 'godown') {
-        if (curBodyWidth < 100) {
-            curBodyWidth += 5;
-        }
-    } else if (command === 'godown222') {
-        if (curBodyWidth > 0) {
-            curBodyWidth -= 5;
-        }
-    }
-
-    //setBodyWidth(curBodyWidth);
+    console.log('columnWidthTabs: ', columnWidthTabs);
 
     // get active tab
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         const activeTab = tabs[0];
 
-        if (tabs.find((el) => el.id === activeTab.id)) {
+        let registeredTab = columnWidthTabs.find((el) => el.id === activeTab.id);
 
-        } else {
-            tabs.push({id: id, width: 100})
+        if (!registeredTab) {
+            columnWidthTabs.push({id: activeTab.id, width: 100});
+            registeredTab = tabs[tabs.length - 1];
         }
 
-        console.log('active tab id', activeTab.id);
-        chrome.tabs.sendMessage(activeTab.id, {"width": curBodyWidth}, function(response) {
+        if (command === 'godown') {
+            if (registeredTab.width < 100) {
+                registeredTab.width += 5;
+            }
+        } else if (command === 'godown222') {
+            if (registeredTab.width > 0) {
+                registeredTab.width -= 5;
+            }
+        }
+
+        chrome.tabs.sendMessage(activeTab.id, {"width": registeredTab.width}, function (response) {
             console.log(response);
         });
     });
@@ -96,15 +90,15 @@ function _displayTab(tab) { //define your callback function
 
 
 function setBodyWidth(value) {
-/*
-chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
-        chrome.tabs.executeScript(
-            tab.id,
-            {code: `document.body.style.width = ${value}%`}
-            );
-    });
+    /*
+    chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
+            chrome.tabs.executeScript(
+                tab.id,
+                {code: `document.body.style.width = ${value}%`}
+                );
+        });
 
-    */
+        */
     _getCurrentTab(_displayTab)
 }
 
