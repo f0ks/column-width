@@ -16,6 +16,7 @@ TODO:
 
 - add keyboard shortcuts for page width adjustments
 - add mousewheel shortcuts
+- ctrl+shift+0 reset width
 - add buttons in interface for mouse only users
 - add options
 - test on linux and mac.
