@@ -23,3 +23,7 @@ TODO:
 - publish.
 
 - additional thing: submit for code review
+
+Extension name:
+    shrinker? (already taken)
+    pagewidth or Page Width
