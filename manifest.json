@@ -19,8 +19,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://yandex.ru/*"
-      , "https://*/*"
+        "https://*/*",
+        "http://*/*"
       ],
       "js": [
         "contentScript.js"
@@ -37,17 +37,17 @@
     }
   },
   "commands": {
-    "godown": {
+    "up": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Y"
-      },
-      "description": "reduce column width"
-    },
-    "godown222": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+U"
+        "default": "Shift+Alt+Up"
       },
       "description": "increase column width"
+    },
+    "down": {
+      "suggested_key": {
+        "default": "Shift+Alt+Down"
+      },
+      "description": "reduce column width"
     }
   },
   "icons": {
