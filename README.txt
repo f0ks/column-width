@@ -24,6 +24,8 @@ TODO:
 
 - additional thing: submit for code review
 
+!!!####### Add alternative keyboard listener besides suggested key to fix non-working hotkeys on some environments
+
 Extension name:
     shrinker? (already taken)
     pagewidth or Page Width
