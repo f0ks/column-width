@@ -1,31 +1,23 @@
-to view extension's console select Inspect views
-                                   background page
-
-                                   in chrome://extensions/
-
 What works:
--width adjustment of any tab with keyboard shortcuts
+-wheel + shift-alt, up/down + shift-alt
 
 PROBLEMS:
--background page .html error
--commands works only with names 'godown' and 'godown222' (weird)
 -workaround body no margin
 
 TODO:
 0. store separate width value for each page instance
 
-- add keyboard shortcuts for page width adjustments
-- add mousewheel shortcuts
+- add options with alternative keys
+
 - ctrl+shift+0 reset width
+
 - add buttons in interface for mouse only users
-- add options
+
 - test on linux and mac.
-- publish.
 
-- additional thing: submit for code review
+- draw icon, write description
 
-!!!####### Add alternative keyboard listener besides suggested key to fix non-working hotkeys on some environments
+
 
 Extension name:
-    shrinker? (already taken)
-    pagewidth or Page Width
+    good old COLUMNER?
