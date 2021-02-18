@@ -8,6 +8,24 @@ document.body.style.margin = '0 auto';
 
 if (document.addEventListener) {
     document.addEventListener("mousewheel", wheelHandler, false);
+    document.addEventListener('keydown', keyboardHandler);
+}
+
+function keyboardHandler(event) {
+    const key = event.key;
+    console.log(event.key);
+
+    if (event.shiftKey && event.altKey) {
+        switch (event.key) {
+            case "ArrowUp":
+                console.log('up key');
+                break;
+            case "ArrowDown":
+                console.log('down key');
+                break;
+        }
+    }
+
 }
 
 function wheelHandler(event) {
@@ -18,7 +36,7 @@ function wheelHandler(event) {
         } else {
             command = 'down';
         }
-        //console.log(command);
+        console.log(command);
 
         chrome.runtime.sendMessage({
             command: command
