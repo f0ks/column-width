@@ -1,53 +1,61 @@
 'use strict';
-
-let columnWidthTabs = [];
-
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    //code in here will run every time a user goes onto a new tab, so you can insert your scripts into every new tab
-    console.log('background onUpdate');
-});
-
-
-chrome.commands.onCommand.addListener(function (command) {
-/*
-    console.log('Command:', command);
-    console.log('columnWidthTabs: ', columnWidthTabs);
-*/
-
-});
+const
+    MAX_WIDTH = 100,
+    STEP = 5,
+    COMMAND_UP = 'up',
+    COMMAND_DOWN = 'down';
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log(request);
+
     sendResponse();
 
-
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        const activeTab = tabs[0];
+        const activeTab = tabs[0]; // should be the only one
 
-        let registeredTab = columnWidthTabs.find((el) => el.id === activeTab.id);
+        chrome.storage.local.get(['columnerTabsWidth'], function (savedTabs) {
 
-        if (!registeredTab) {
-            columnWidthTabs.push({id: activeTab.id, width: 100});
-            registeredTab = tabs[tabs.length - 1];
-        }
+            let width;
 
-        if (request.command === 'up') {
-            if (registeredTab.width < 100) {
-                registeredTab.width += 5;
+            if (Object.keys(savedTabs).length === 0) {
+                // initial run
+                chrome.storage.local.set(
+                    {
+                        columnerTabsWidth: [{url: activeTab.url, width: MAX_WIDTH}]
+                    }
+                );
+
+            } else {
+
+                const savedTab = savedTabs.columnerTabsWidth.find((tab) => tab.url === activeTab.url);
+                width = savedTab ? savedTab.width : MAX_WIDTH;
+
+                if (request.command === COMMAND_UP && width < MAX_WIDTH) {
+                    width += STEP;
+
+                } else if (request.command === COMMAND_DOWN && width > 0) {
+                    width -= STEP;
+                }
+
+                if (savedTab) savedTab.width = width;
+
+                chrome.storage.local.set(
+                    {
+                        columnerTabsWidth: savedTab ? savedTabs.columnerTabsWidth :
+                            [...savedTabs.columnerTabsWidth, {
+                                url: activeTab.url,
+                                width
+                            }]
+                    }
+                );
             }
-        } else if (request.command === 'down') {
-            if (registeredTab.width > 0) {
-                registeredTab.width -= 5;
-            }
-        }
 
-        console.log('registeredTab', registeredTab);
+            chrome.tabs.sendMessage(activeTab.id, {width});
 
-        chrome.tabs.sendMessage(activeTab.id, {"width": registeredTab.width}, function (response) {
-            console.log(response);
         });
+
     });
 
 });
+
 
 
