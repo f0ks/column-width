@@ -10,7 +10,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     sendResponse();
 
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+
         const activeTab = tabs[0]; // should be the only one
+        if (!activeTab) return;
 
         chrome.storage.local.get(['columnerTabsWidth'], function (savedTabs) {
 
@@ -29,10 +31,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 const savedTab = savedTabs.columnerTabsWidth.find((tab) => tab.url === activeTab.url);
                 width = savedTab ? savedTab.width : MAX_WIDTH;
 
-                if (request.command === COMMAND_UP && width < MAX_WIDTH) {
+                if (request.message === COMMAND_UP && width < MAX_WIDTH) {
                     width += STEP;
 
-                } else if (request.command === COMMAND_DOWN && width > 0) {
+                } else if (request.message === COMMAND_DOWN && width > 0) {
                     width -= STEP;
                 }
 

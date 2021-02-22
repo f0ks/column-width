@@ -5,7 +5,6 @@ PROBLEMS:
 -workaround body no margin
 
 TODO:
-0. store separate width value for each page instance
 
 - add options with alternative keys
 
@@ -16,6 +15,8 @@ TODO:
 - test on linux and mac.
 
 - draw icon, write description
+
+- fix onLoad not fires when tabs are pinned
 
 
 
