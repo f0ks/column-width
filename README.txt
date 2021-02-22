@@ -6,6 +6,8 @@ PROBLEMS:
 
 TODO:
 
+- remember width for domain not for url
+
 - add options with alternative keys
 
 - ctrl+shift+0 reset width
