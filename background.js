@@ -22,13 +22,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 // initial run
                 chrome.storage.local.set(
                     {
-                        columnerTabsWidth: [{url: activeTab.url, width: MAX_WIDTH}]
+                        columnerTabsWidth: [{domain: new URL(activeTab.url).hostname, width: MAX_WIDTH}]
                     }
                 );
 
             } else {
 
-                const savedTab = savedTabs.columnerTabsWidth.find((tab) => tab.url === activeTab.url);
+                const savedTab = savedTabs.columnerTabsWidth.find((tab) => tab.domain === new URL(activeTab.url).hostname);
                 width = savedTab ? savedTab.width : MAX_WIDTH;
 
                 if (request.message === COMMAND_UP && width < MAX_WIDTH) {
@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     {
                         columnerTabsWidth: savedTab ? savedTabs.columnerTabsWidth :
                             [...savedTabs.columnerTabsWidth, {
-                                url: activeTab.url,
+                                domain: new URL(activeTab.url).hostname,
                                 width
                             }]
                     }
