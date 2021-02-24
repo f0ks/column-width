@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
+  "name": "Columner",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Control the width of the page",
   "permissions": [
     "activeTab",
     "tabs",
@@ -27,7 +27,7 @@
       ]
     }
   ],
-  "page_action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/get_started16.png",

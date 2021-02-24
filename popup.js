@@ -1,37 +1,21 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 'use strict';
 
-chrome.extension.getBackgroundPage().console.log('popup');
+window.onload = function () {
+    const buttonUp = document.getElementById('buttonUp');
+    const buttonDown = document.getElementById('buttonDown');
 
+    buttonUp.onclick = function (element) {
+        chrome.runtime.sendMessage({
+            message: 'up'
+        });
 
-let changeColor = document.getElementById('changeColor');
+    };
 
-chrome.storage.sync.get('color', function (data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
-    chrome.extension.getBackgroundPage().console.log('get color');
+    buttonDown.onclick = function (element) {
+        chrome.runtime.sendMessage({
+            message: 'down'
+        });
+    };
 
-
-});
-
-changeColor.onclick = function (element) {
-    console.log('on click');
-    chrome.extension.getBackgroundPage().console.log('on click');
-
-    let color = element.target.value;
-
-
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-    }, function(tabs) {
-        var tabURL = tabs[0].url;
-        console.log(tabURL);
-    });
-
-
-};
+}
 
