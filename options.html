@@ -8,19 +8,37 @@
         outline: none;
         margin: 10px;
       }
+
+      .options {
+        margin: 1rem;
+        padding: 1rem;
+        background: #ddd;
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
     </style>
   </head>
   <body>
 
-  <h3>Shortcuts:</h3>
+  <div class="options">
+    <h1>Columner options</h1>
 
-  <div>
-    <strong>Shift</strong> + <strong>Alt</strong> + <span id="optionCtrlWheel"><input type="checkbox" /> Ctrl </span> + <strong>Mouse Wheel</strong>
+    <h3>Shortcuts:</h3>
+
+    <div>
+      <strong>Shift</strong> + <strong>Alt</strong> + <label for="optionCtrlMouseWheel"><input id="optionCtrlMouseWheel" type="checkbox" /> Ctrl </label> + <strong>Mouse Wheel</strong>
+    </div>
+
+    <div>
+      <strong>Shift</strong> + <strong>Alt</strong> + <label for="optionCtrlArrows"><input id="optionCtrlArrows" type="checkbox" /> Ctrl </label> + <strong>Up/Down</strong>
+    </div>
   </div>
 
-  <div>
-    <strong>Shift</strong> + <strong>Alt</strong> + <input type="checkbox" /> Ctrl + <strong>Up/Down</strong>
-  </div>
+
 
 
   </body>

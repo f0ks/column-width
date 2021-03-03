@@ -1,19 +1,22 @@
 'use strict';
 
+const optionCtrlArrows = document.getElementById('optionCtrlArrows');
+const optionCtrlMouseWheel = document.getElementById('optionCtrlMouseWheel');
 
-function constructOptions(kButtonColors) {
-    for (let item of kButtonColors) {
-        let button = document.createElement('button');
-        button.style.backgroundColor = item;
-        button.addEventListener('click', function () {
-            chrome.storage.sync.set({color: item}, function () {
-                chrome.extension.getBackgroundPage().console.log('color is ' + item);
-            })
-        });
-        page.appendChild(button);
-    }
-}
+chrome.storage.sync.get('optionCtrlArrows', function (data) {
+    optionCtrlArrows.checked = data.optionCtrlArrows;
+});
 
-constructOptions(kButtonColors);
+chrome.storage.sync.get('optionCtrlMouseWheel', function (data) {
+    optionCtrlMouseWheel.checked = data.optionCtrlMouseWheel;
+});
 
-chrome.extension.getBackgroundPage().console.log('options');
+optionCtrlArrows.addEventListener('click', function (e) {
+    chrome.storage.sync.set({optionCtrlArrows: e.target.checked});
+})
+
+optionCtrlMouseWheel.addEventListener('click', function (e) {
+    chrome.storage.sync.set({optionCtrlMouseWheel: e.target.checked});
+})
+
+//chrome.extension.getBackgroundPage().console.log('');
