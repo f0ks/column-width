@@ -1,22 +1,29 @@
 'use strict';
 
-const optionCtrlArrows = document.getElementById('optionCtrlArrows');
-const optionCtrlMouseWheel = document.getElementById('optionCtrlMouseWheel');
+const optionAltArrows = document.getElementById('optionAltArrows');
+const optionAltMouseWheel = document.getElementById('optionAltMouseWheel');
 
-chrome.storage.sync.get('optionCtrlArrows', function (data) {
-    optionCtrlArrows.checked = data.optionCtrlArrows;
+chrome.storage.sync.get('optionAltArrows', function (data) {
+    optionAltArrows.checked = data.optionAltArrows;
+    //chrome.extension.getBackgroundPage().console.log('chrome.storage.sync.get optionAltArrows', data)
 });
 
-chrome.storage.sync.get('optionCtrlMouseWheel', function (data) {
-    optionCtrlMouseWheel.checked = data.optionCtrlMouseWheel;
+chrome.storage.sync.get('optionAltMouseWheel', function (data) {
+    optionAltMouseWheel.checked = data.optionAltMouseWheel;
+    //chrome.extension.getBackgroundPage().console.log('chrome.storage.sync.get optionAltMouseWheel', data)
+
 });
 
-optionCtrlArrows.addEventListener('click', function (e) {
-    chrome.storage.sync.set({optionCtrlArrows: e.target.checked});
+optionAltArrows.addEventListener('click', function (e) {
+    chrome.storage.sync.set({optionAltArrows: e.target.checked});
+    //chrome.extension.getBackgroundPage().console.log('click', e.target.checked)
+
 })
 
-optionCtrlMouseWheel.addEventListener('click', function (e) {
-    chrome.storage.sync.set({optionCtrlMouseWheel: e.target.checked});
+optionAltMouseWheel.addEventListener('click', function (e) {
+    chrome.storage.sync.set({optionAltMouseWheel: e.target.checked});
+    //chrome.extension.getBackgroundPage().console.log('click', e.target.checked)
+
 })
 
 //chrome.extension.getBackgroundPage().console.log('');

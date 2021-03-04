@@ -1,7 +1,7 @@
 'use strict';
 const
     MAX_WIDTH = 100,
-    STEP = 5,
+    STEP = 4,
     COMMAND_UP = 'up',
     COMMAND_DOWN = 'down';
 
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 if (request.message === COMMAND_UP && width < MAX_WIDTH) {
                     width += STEP;
 
-                } else if (request.message === COMMAND_DOWN && width > 0) {
+                } else if (request.message === COMMAND_DOWN && width > STEP * 7) {
                     width -= STEP;
                 }
 

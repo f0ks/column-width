@@ -11,24 +11,25 @@ if (document.addEventListener) {
     window.addEventListener("load", onLoad, false);
 }
 
-let optionCtrlArrows, optionCtrlMouseWheel;
+let optionAltArrows, optionAltMouseWheel;
 
 function onLoad(event) {
     sendMessage('getWidth');
 
-    chrome.storage.sync.get('optionCtrlArrows', function (data) {
-        optionCtrlArrows = data.optionCtrlArrows;
+    chrome.storage.sync.get('optionAltArrows', function (data) {
+        optionAltArrows = data.optionAltArrows;
     });
 
-    chrome.storage.sync.get('optionCtrlMouseWheel', function (data) {
-        optionCtrlMouseWheel = data.optionCtrlMouseWheel;
+    chrome.storage.sync.get('optionAltMouseWheel', function (data) {
+        optionAltMouseWheel = data.optionAltMouseWheel;
     });
 
 }
 
 function keyboardHandler(event) {
+    //console.log('optionAltArrows', optionAltArrows);
     const key = event.key;
-    if (event.shiftKey && event.altKey && (optionCtrlArrows ? event.ctrlKey : true)) {
+    if (event.shiftKey && (optionAltArrows ? event.altKey : true)) {
         switch (event.key) {
             case "ArrowUp":
                 sendMessage('up')
@@ -41,7 +42,8 @@ function keyboardHandler(event) {
 }
 
 function wheelHandler(event) {
-    if (event.shiftKey && event.altKey && (optionCtrlMouseWheel ? event.ctrlKey : true)) {
+    //console.log('optionAltMouseWheel', optionAltMouseWheel);
+    if ( event.shiftKey && (optionAltMouseWheel ? event.altKey : true)) {
         if (event.deltaY < 0) {
             sendMessage('up')
         } else {
