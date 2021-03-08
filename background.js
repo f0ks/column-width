@@ -1,7 +1,7 @@
 'use strict';
 const
     MAX_WIDTH = 100,
-    STEP = 4,
+    STEP = 5,
     COMMAND_UP = 'up',
     COMMAND_DOWN = 'down';
 
@@ -10,6 +10,7 @@ function setWidth(request) {
 
         const activeTab = tabs[0]; // should be the only one
         if (!activeTab) return;
+        if (!activeTab.url) return; // do nothing if empty tab is opened
 
         chrome.storage.local.get(['columnerTabsWidth'], function (savedTabs) {
 
@@ -56,7 +57,6 @@ function setWidth(request) {
 }
 
 chrome.tabs.onActivated.addListener( function(info) {
-    //console.log('tab changed!', info);
     setWidth({
         message: 'getWidth'
     });
