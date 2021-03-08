@@ -5,10 +5,7 @@ const
     COMMAND_UP = 'up',
     COMMAND_DOWN = 'down';
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-
-    sendResponse();
-
+function setWidth(request) {
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 
         const activeTab = tabs[0]; // should be the only one
@@ -55,8 +52,19 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
         });
 
-    });
+    })
+}
 
+chrome.tabs.onActivated.addListener( function(info) {
+    //console.log('tab changed!', info);
+    setWidth({
+        message: 'getWidth'
+    });
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    sendResponse();
+    setWidth(request);
 });
 
 
