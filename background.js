@@ -1,12 +1,11 @@
 (function () {
-
     'use strict';
+
     const
         MAX_WIDTH = 100,
         STEP = 5,
         COMMAND_UP = 'up',
         COMMAND_DOWN = 'down';
-
 
     function setWidth(request) {
         chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
@@ -74,6 +73,5 @@
         sendResponse();
         setWidth(request);
     });
-
 
 })();

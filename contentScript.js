@@ -1,11 +1,7 @@
 (function () {
-
     'use strict';
 
-    //document.body.style.marginLeft = 'auto';
-    //document.body.style.marginRight = 'auto';
-    document.body.style.margin = '0 auto';
-    // if styles already set by pages styles then add some wrapper?
+    let optionAltArrows, optionAltMouseWheel, optionAlignment;
 
     if (document.addEventListener) {
         document.addEventListener("mousewheel", wheelHandler, false);
@@ -13,9 +9,29 @@
         window.addEventListener("load", onLoad, false);
     }
 
-    let optionAltArrows, optionAltMouseWheel;
 
     function onLoad(event) {
+        chrome.storage.sync.get('optionAlignment', function (data) {
+            let bodyMargin;
+            optionAlignment = data.optionAlignment || 'center';
+
+            // if styles already set by pages styles then add some wrapper?
+
+            switch (optionAlignment) {
+                case 'left':
+                    bodyMargin = '0 auto 0 0';
+                    break;
+                case 'center':
+                    bodyMargin = '0 auto 0 auto';
+                    break;
+                case 'right':
+                    bodyMargin = '0 0 0 auto';
+                    break;
+            }
+
+            document.body.style.margin = bodyMargin;
+        });
+
         sendMessage('getWidth');
 
         chrome.storage.sync.get('optionAltArrows', function (data) {
@@ -68,6 +84,7 @@
             sendResponse('response');
         }
     );
+
 })();
 
 
