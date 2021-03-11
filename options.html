@@ -1,52 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-        margin: 10px;
-      }
 
-      .options {
-        margin: 1rem;
-        padding: 1rem;
-        background: #ddd;
-        border-radius: 6px;
-        display: inline-block;
-      }
+        body {
+            color: #444;
+        }
 
-      p {
-        padding: 0 1rem;
-      }
+        button {
+            height: 30px;
+            width: 30px;
+            outline: none;
+            margin: 10px;
+        }
 
-      h1 {
-        margin-top: 0;
-      }
+        .options {
+            padding: 1rem;
+            background: #eee;
+            border-radius: 6px;
+            display: flex;
+        }
+
+        .options > div {
+            margin-right: 2rem;
+        }
+
+        p {
+            padding: 0;
+        }
+
+        h1, h3 {
+            margin-top: 0;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
-  <div class="options">
-    <h1>Columner options</h1>
+<h1>Columner options</h1>
 
-    <h3>Shortcuts:</h3>
-
-    <div>
-      <strong>Shift</strong> + <label for="optionAltMouseWheel"><input id="optionAltMouseWheel" type="checkbox" /> Alt </label> + <strong>Mouse Wheel</strong>
-    </div>
+<div class="options">
 
     <div>
-      <strong>Shift</strong> + <label for="optionAltArrows"><input id="optionAltArrows" type="checkbox" /> Alt </label> + <strong>Up/Down</strong>
+
+
+        <h3>Shortcuts</h3>
+
+        <div>
+            <strong>Shift</strong> + <label for="optionAltMouseWheel">
+            <input id="optionAltMouseWheel" type="checkbox"/>Alt</label> + <strong>Mouse Wheel</strong>
+        </div>
+
+        <div>
+            <strong>Shift</strong> + <label for="optionAltArrows"><input id="optionAltArrows" type="checkbox"/> Alt </label>
+            + <strong>Up/Down</strong>
+        </div>
     </div>
-  </div>
-
-  <p>You may need to reload opened tabs for the changes to take effect</p>
 
 
+    <div>
+
+        <h3>Alignment</h3>
+
+        <label for="optionAlignmentLeft">
+            <input id="optionAlignmentLeft" type="radio" name="optionAlignment"/>Left</label>
 
 
-  </body>
-  <script src="options.js"></script>
+        <label for="optionAlignmentCenter">
+            <input id="optionAlignmentCenter" type="radio" name="optionAlignment"/>Center</label>
+
+        <label for="optionAlignmentRight">
+            <input id="optionAlignmentRight" type="radio" name="optionAlignment"/>Right</label>
+    </div>
+
+
+
+
+
+
+</div>
+
+<p>You may need to reload opened tabs for the changes to take effect</p>
+
+</body>
+<script src="options.js"></script>
 </html>
