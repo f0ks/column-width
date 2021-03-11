@@ -5,7 +5,6 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "declarativeContent",
     "storage",
     "http://*/*"
   ],
