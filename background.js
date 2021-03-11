@@ -53,7 +53,7 @@
 
                     chrome.runtime.sendMessage({
                         msg: "currentWidth",
-                        width: savedTab.width
+                        width: savedTab ? savedTab.width : 100
                     });
                 }
 

@@ -8,6 +8,10 @@
         buttonUp = document.getElementById('buttonUp');
         buttonDown = document.getElementById('buttonDown');
 
+        chrome.runtime.sendMessage({
+            message: 'getWidth'
+        });
+
         buttonUp.onclick = function (element) {
             chrome.runtime.sendMessage({
                 message: 'up'
