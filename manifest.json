@@ -1,6 +1,6 @@
 {
   "name": "Columner",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Control the width of the page",
   "permissions": [
     "activeTab",
@@ -34,20 +34,6 @@
       "32": "images/get_started32.png",
       "48": "images/get_started48.png",
       "128": "images/get_started128.png"
-    }
-  },
-  "commands": {
-    "up": {
-      "suggested_key": {
-        "default": "Shift+Alt+Up"
-      },
-      "description": "increase column width"
-    },
-    "down": {
-      "suggested_key": {
-        "default": "Shift+Alt+Down"
-      },
-      "description": "reduce column width"
     }
   },
   "icons": {
