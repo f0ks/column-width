@@ -9,7 +9,6 @@
         window.addEventListener("load", onLoad, false);
     }
 
-
     function onLoad(event) {
         chrome.storage.sync.get('optionAlignment', function (data) {
             let bodyMargin;
@@ -29,6 +28,7 @@
                     break;
             }
 
+            document.body.style.transition = 'width 0.3s ease 0s';
             document.body.style.margin = bodyMargin;
         });
 
@@ -86,8 +86,3 @@
     );
 
 })();
-
-
-
-
-

@@ -6,8 +6,7 @@
         optionAlignment = document.getElementsByName('optionAlignment'),
         optionAlignmentLeft = document.getElementById('optionAlignmentLeft'),
         optionAlignmentCenter = document.getElementById('optionAlignmentCenter'),
-        optionAlignmentRight = document.getElementById('optionAlignmentRight')
-    ;
+        optionAlignmentRight = document.getElementById('optionAlignmentRight');
 
     chrome.storage.sync.get('optionAltArrows', function (data) {
         optionAltArrows.checked = data.optionAltArrows;
@@ -45,6 +44,3 @@
     }))
 
 })();
-
-
-

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Control the width of the page",
   "permissions": [
-    "activeTab",
     "tabs",
     "storage",
     "http://*/*"
